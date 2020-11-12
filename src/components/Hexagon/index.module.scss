@@ -1,0 +1,74 @@
+@use 'sass:math';
+@import '_config';
+
+@mixin polygon($n, $oa: -90deg) {
+	$n: round($n);
+	$r: 50%;
+	$ba: 360deg/$n;
+	$vertices: ();
+	
+	@for $i from 0 to $n {
+		$ca: $i * $ba + $oa;
+		
+		$x: $r * (1 + math.cos($ca));
+		$y: $r * (1 + math.sin($ca));
+		
+		$vertices: $vertices, $x $y;
+	}
+	
+	-webkit-clip-path: polygon($vertices);
+					clip-path: polygon($vertices);
+}
+
+$hexagon-radius: 128px;
+$hegagon-gap: -10px;
+
+.grid {
+  width: min-content;
+  display: inline-block;
+  margin-top: 2 * ($hexagon-radius - $hegagon-gap / 2) * (1 - math.sin(60deg));
+  margin-bottom: -$hegagon-gap;
+}
+
+.row {
+  display: inline-block;
+  margin-top: -2 * ($hexagon-radius - $hegagon-gap / 2) * (1 - math.sin(60deg));
+  white-space: nowrap;
+
+  &:nth-child(even) {
+    margin-left: $hexagon-radius + $hegagon-gap;
+  }
+}
+
+.hexagon {
+  display: inline-block;
+  width: $hexagon-radius * 2;
+  height: $hexagon-radius * 2;
+  margin: $hegagon-gap;
+  overflow: hidden;
+}
+
+.clipping {
+  @include polygon(6);
+}
+
+.image {
+  height: 100%;
+  object-fit: cover;
+  object-position: 0 50%;
+}
+
+.flankContainer {
+  position: relative;
+  .flankLeft, .flankRight {
+    position: absolute;
+  }
+  .flankLeft {
+    left: 0;
+    transform: translateX(-100%);
+  }
+  .flankRight {
+    right: 0;
+    transform: translateX(100%);
+  }
+}

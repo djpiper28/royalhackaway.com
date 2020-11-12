@@ -5,6 +5,7 @@ import { HackathonDefinition } from "../components/HackathonDefinition"
 import { HackathonTitle } from "../components/HackathonTitle"
 import { graphql } from "gatsby"
 import { EventSponsors } from "../components/EventSponsors"
+import { HexagonFlankingContainer } from '../components/Hexagon';
 
 const HomePage = ({ data }) => {
   const { allMarkdownRemark } = data
@@ -19,6 +20,7 @@ const HomePage = ({ data }) => {
       <HackathonTitle show_ticket_button={show_ticket_button} />
       <HackathonDefinition />
       {show_sponsors_list && <EventSponsors sponsors={sponsors} />}
+      <HexagonFlankingContainer />
     </Layout>
   )
 }
