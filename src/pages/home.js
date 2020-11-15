@@ -5,7 +5,7 @@ import { HackathonDefinition } from "../components/HackathonDefinition"
 import { HackathonTitle } from "../components/HackathonTitle"
 import { graphql } from "gatsby"
 import { EventSponsors } from "../components/EventSponsors"
-import { HexagonFlankingContainer } from '../components/Hexagon';
+import { HexagonFlankingContainer } from "../components/Hexagon"
 
 const HomePage = ({ data }) => {
   const { allMarkdownRemark } = data
