@@ -1,4 +1,4 @@
-import React from "react"
+import React, { ReactNode } from "react"
 import { graphql } from "gatsby"
 import { Layout } from "../../components/Layout"
 import { EventJumbotron } from "../../components/EventJumbotron"
@@ -10,8 +10,9 @@ import { EventFrequentlyAskedQuestions } from "../../components/EventFrequentlyA
 import { EventQualms } from "../../components/EventQualms"
 import { SEO } from "../../components/SEO"
 import { EventInternetConnectivity } from "../../components/EventInternetConnectivity"
+import { EventPageQuery } from "../../../types/graphql"
 
-export default function Template({ data }) {
+const EventsPage = ({ data }: { data: EventPageQuery }): ReactNode => {
   const { markdownRemark } = data
   const { frontmatter, html } = markdownRemark
 
@@ -41,9 +42,7 @@ export default function Template({ data }) {
       />
 
       <EventJumbotron data={data} />
-      {full_description && (
-        <EventDescription colour={color} description={full_description} />
-      )}
+      {full_description && <EventDescription data={data} />}
       {show_map && <GoogleMaps map={map_src} />}
 
       {
@@ -71,8 +70,10 @@ export default function Template({ data }) {
   )
 }
 
+export default EventsPage
+
 export const pageQuery = graphql`
-  query($slug: String!) {
+  query EventPage($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       frontmatter {

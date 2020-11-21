@@ -5,6 +5,7 @@ Royal Hackaway Website
 PRs and issues welcome :)
 
 # Images
+
 ![Full Page Screenshot](.github/fullpage.png)
 
 # Contributing

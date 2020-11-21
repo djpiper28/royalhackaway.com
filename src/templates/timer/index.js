@@ -83,7 +83,7 @@ class Template extends Component {
 export default Template
 
 export const pageQuery = graphql`
-  query($slug: String!) {
+  query TimerPage($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       frontmatter {
         name

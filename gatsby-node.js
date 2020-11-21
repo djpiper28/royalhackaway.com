@@ -3,19 +3,23 @@ const { createFilePath } = require("gatsby-source-filesystem")
 const fs = require("fs")
 
 const getTemplate = templateName => {
-  const template = path.resolve(
+  const location = path.resolve(
     __dirname,
     "src",
     "templates",
     templateName,
-    "index.js"
-  )
+    "index"
+  );
 
-  if (fs.existsSync(template)) {
-    return template
-  } else {
-    throw new Error(`Could not find the specified template file at ${template}`)
+  const extensions = [
+    '.tsx', '.js'
+  ]
+
+  for (const extension of extensions) {
+    if (fs.existsSync(location + extension)) return location + extension
   }
+
+  throw new Error(`Could not find the specified template file at ${template}`)
 }
 
 exports.onCreateNode = ({ node, getNode, actions }) => {

@@ -1,11 +1,16 @@
-import React, { Component } from "react"
+import React, { Component, ReactNode } from "react"
 import styles from "./index.module.scss"
 import Img from "gatsby-image"
 import { CombineStyles } from "../../helpers/CombineStyles"
 import { ButtonsContainer } from "../ButtonsContainer"
+import { EventPageQuery } from "../../../types/graphql"
 
-class EventJumbotron extends Component {
-  render() {
+interface Props {
+  data: EventPageQuery
+}
+
+class EventJumbotron extends Component<Props> {
+  render(): ReactNode {
     const { markdownRemark } = this.props.data
     const { frontmatter } = markdownRemark
 
@@ -24,6 +29,7 @@ class EventJumbotron extends Component {
       enable_chat_link,
       chat_link,
     } = frontmatter
+
     const jumbotronImageFluid =
       frontmatter?.jumbotron_image?.childImageSharp?.fluid
     const smallLogo = frontmatter?.small_logo?.publicURL
