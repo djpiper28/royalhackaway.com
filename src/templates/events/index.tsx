@@ -41,7 +41,7 @@ const EventsPage = ({ data }: { data: EventPageQuery }): ReactNode => {
         image={jumbotron_image?.publicURL}
       />
 
-      <EventJumbotron data={data} />
+      <EventJumbotron markdownRemark={markdownRemark} />
 
       {show_sponsors_list && (
         <EventSponsors
@@ -52,7 +52,7 @@ const EventsPage = ({ data }: { data: EventPageQuery }): ReactNode => {
         />
       )}
 
-      {full_description && <EventDescription data={data} />}
+      {full_description && <EventDescription markdownRemark={markdownRemark} />}
 
 
       {show_map && <GoogleMaps map={map_src} />}

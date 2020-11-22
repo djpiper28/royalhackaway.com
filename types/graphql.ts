@@ -706,12 +706,14 @@ export type FileFieldsEnum =
   | 'childMarkdownRemark___id'
   | 'childMarkdownRemark___frontmatter___title'
   | 'childMarkdownRemark___frontmatter___name'
+  | 'childMarkdownRemark___frontmatter___render'
   | 'childMarkdownRemark___frontmatter___is_public'
   | 'childMarkdownRemark___frontmatter___is_over'
   | 'childMarkdownRemark___frontmatter___start'
   | 'childMarkdownRemark___frontmatter___end'
   | 'childMarkdownRemark___frontmatter___short_description'
   | 'childMarkdownRemark___frontmatter___full_description'
+  | 'childMarkdownRemark___frontmatter___event_info'
   | 'childMarkdownRemark___frontmatter___color'
   | 'childMarkdownRemark___frontmatter___display_date'
   | 'childMarkdownRemark___frontmatter___layout'
@@ -795,6 +797,7 @@ export type FileFieldsEnum =
   | 'childMarkdownRemark___frontmatter___map_src'
   | 'childMarkdownRemark___frontmatter___show_floor_plan'
   | 'childMarkdownRemark___frontmatter___venue_floor_plan'
+  | 'childMarkdownRemark___frontmatter___show_faq'
   | 'childMarkdownRemark___frontmatter___enable_ticket_button'
   | 'childMarkdownRemark___frontmatter___disable_button'
   | 'childMarkdownRemark___frontmatter___tickets'
@@ -809,6 +812,11 @@ export type FileFieldsEnum =
   | 'childMarkdownRemark___frontmatter___schedule___events'
   | 'childMarkdownRemark___frontmatter___show_sponsors_list'
   | 'childMarkdownRemark___frontmatter___show_sponsor_button'
+  | 'childMarkdownRemark___frontmatter___sponsors'
+  | 'childMarkdownRemark___frontmatter___sponsors___name'
+  | 'childMarkdownRemark___frontmatter___sponsors___colour'
+  | 'childMarkdownRemark___frontmatter___sponsors___tier'
+  | 'childMarkdownRemark___frontmatter___sponsors___tier_sponsors'
   | 'childMarkdownRemark___frontmatter___sponsor_document___sourceInstanceName'
   | 'childMarkdownRemark___frontmatter___sponsor_document___absolutePath'
   | 'childMarkdownRemark___frontmatter___sponsor_document___relativePath'
@@ -845,13 +853,6 @@ export type FileFieldsEnum =
   | 'childMarkdownRemark___frontmatter___sponsor_document___publicURL'
   | 'childMarkdownRemark___frontmatter___sponsor_document___id'
   | 'childMarkdownRemark___frontmatter___sponsor_document___children'
-  | 'childMarkdownRemark___frontmatter___sponsors'
-  | 'childMarkdownRemark___frontmatter___sponsors___colour'
-  | 'childMarkdownRemark___frontmatter___sponsors___name'
-  | 'childMarkdownRemark___frontmatter___sponsors___tier'
-  | 'childMarkdownRemark___frontmatter___sponsors___tier_sponsors'
-  | 'childMarkdownRemark___frontmatter___event_info'
-  | 'childMarkdownRemark___frontmatter___show_faq'
   | 'childMarkdownRemark___frontmatter___create_hacking_countdown_timer'
   | 'childMarkdownRemark___frontmatter___hacking_start'
   | 'childMarkdownRemark___frontmatter___hacking_end'
@@ -1674,12 +1675,14 @@ export type MarkdownRemarkFieldsEnum =
   | 'id'
   | 'frontmatter___title'
   | 'frontmatter___name'
+  | 'frontmatter___render'
   | 'frontmatter___is_public'
   | 'frontmatter___is_over'
   | 'frontmatter___start'
   | 'frontmatter___end'
   | 'frontmatter___short_description'
   | 'frontmatter___full_description'
+  | 'frontmatter___event_info'
   | 'frontmatter___color'
   | 'frontmatter___display_date'
   | 'frontmatter___layout'
@@ -1815,6 +1818,7 @@ export type MarkdownRemarkFieldsEnum =
   | 'frontmatter___map_src'
   | 'frontmatter___show_floor_plan'
   | 'frontmatter___venue_floor_plan'
+  | 'frontmatter___show_faq'
   | 'frontmatter___enable_ticket_button'
   | 'frontmatter___disable_button'
   | 'frontmatter___tickets'
@@ -1831,6 +1835,15 @@ export type MarkdownRemarkFieldsEnum =
   | 'frontmatter___schedule___events___activity'
   | 'frontmatter___show_sponsors_list'
   | 'frontmatter___show_sponsor_button'
+  | 'frontmatter___sponsors'
+  | 'frontmatter___sponsors___name'
+  | 'frontmatter___sponsors___colour'
+  | 'frontmatter___sponsors___tier'
+  | 'frontmatter___sponsors___tier_sponsors'
+  | 'frontmatter___sponsors___tier_sponsors___name'
+  | 'frontmatter___sponsors___tier_sponsors___link'
+  | 'frontmatter___sponsors___tier_sponsors___colour'
+  | 'frontmatter___sponsors___tier_sponsors___shadow_colour'
   | 'frontmatter___sponsor_document___sourceInstanceName'
   | 'frontmatter___sponsor_document___absolutePath'
   | 'frontmatter___sponsor_document___relativePath'
@@ -1893,17 +1906,6 @@ export type MarkdownRemarkFieldsEnum =
   | 'frontmatter___sponsor_document___childMarkdownRemark___timeToRead'
   | 'frontmatter___sponsor_document___childMarkdownRemark___tableOfContents'
   | 'frontmatter___sponsor_document___childMarkdownRemark___children'
-  | 'frontmatter___sponsors'
-  | 'frontmatter___sponsors___colour'
-  | 'frontmatter___sponsors___name'
-  | 'frontmatter___sponsors___tier'
-  | 'frontmatter___sponsors___tier_sponsors'
-  | 'frontmatter___sponsors___tier_sponsors___colour'
-  | 'frontmatter___sponsors___tier_sponsors___link'
-  | 'frontmatter___sponsors___tier_sponsors___name'
-  | 'frontmatter___sponsors___tier_sponsors___shadow_colour'
-  | 'frontmatter___event_info'
-  | 'frontmatter___show_faq'
   | 'frontmatter___create_hacking_countdown_timer'
   | 'frontmatter___hacking_start'
   | 'frontmatter___hacking_end'
@@ -2042,12 +2044,14 @@ export type MarkdownRemarkFilterInput = {
 export type MarkdownRemarkFrontmatter = {
   title?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
+  render?: Maybe<Scalars['Boolean']>;
   is_public?: Maybe<Scalars['Boolean']>;
   is_over?: Maybe<Scalars['Boolean']>;
   start?: Maybe<Scalars['Date']>;
   end?: Maybe<Scalars['Date']>;
   short_description?: Maybe<Scalars['String']>;
   full_description?: Maybe<Scalars['String']>;
+  event_info?: Maybe<Scalars['String']>;
   color?: Maybe<Scalars['String']>;
   display_date?: Maybe<Scalars['String']>;
   layout?: Maybe<Scalars['String']>;
@@ -2061,6 +2065,7 @@ export type MarkdownRemarkFrontmatter = {
   map_src?: Maybe<Scalars['String']>;
   show_floor_plan?: Maybe<Scalars['Boolean']>;
   venue_floor_plan?: Maybe<Scalars['String']>;
+  show_faq?: Maybe<Scalars['Boolean']>;
   enable_ticket_button?: Maybe<Scalars['Boolean']>;
   disable_button?: Maybe<Scalars['Boolean']>;
   tickets?: Maybe<Scalars['String']>;
@@ -2071,10 +2076,8 @@ export type MarkdownRemarkFrontmatter = {
   schedule?: Maybe<Array<Maybe<MarkdownRemarkFrontmatterSchedule>>>;
   show_sponsors_list?: Maybe<Scalars['Boolean']>;
   show_sponsor_button?: Maybe<Scalars['Boolean']>;
-  sponsor_document?: Maybe<File>;
   sponsors?: Maybe<Array<Maybe<MarkdownRemarkFrontmatterSponsors>>>;
-  event_info?: Maybe<Scalars['String']>;
-  show_faq?: Maybe<Scalars['Boolean']>;
+  sponsor_document?: Maybe<File>;
   create_hacking_countdown_timer?: Maybe<Scalars['Boolean']>;
   hacking_start?: Maybe<Scalars['Date']>;
   hacking_end?: Maybe<Scalars['Date']>;
@@ -2120,12 +2123,14 @@ export type MarkdownRemarkFrontmatterHacking_EndArgs = {
 export type MarkdownRemarkFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
   name?: Maybe<StringQueryOperatorInput>;
+  render?: Maybe<BooleanQueryOperatorInput>;
   is_public?: Maybe<BooleanQueryOperatorInput>;
   is_over?: Maybe<BooleanQueryOperatorInput>;
   start?: Maybe<DateQueryOperatorInput>;
   end?: Maybe<DateQueryOperatorInput>;
   short_description?: Maybe<StringQueryOperatorInput>;
   full_description?: Maybe<StringQueryOperatorInput>;
+  event_info?: Maybe<StringQueryOperatorInput>;
   color?: Maybe<StringQueryOperatorInput>;
   display_date?: Maybe<StringQueryOperatorInput>;
   layout?: Maybe<StringQueryOperatorInput>;
@@ -2139,6 +2144,7 @@ export type MarkdownRemarkFrontmatterFilterInput = {
   map_src?: Maybe<StringQueryOperatorInput>;
   show_floor_plan?: Maybe<BooleanQueryOperatorInput>;
   venue_floor_plan?: Maybe<StringQueryOperatorInput>;
+  show_faq?: Maybe<BooleanQueryOperatorInput>;
   enable_ticket_button?: Maybe<BooleanQueryOperatorInput>;
   disable_button?: Maybe<BooleanQueryOperatorInput>;
   tickets?: Maybe<StringQueryOperatorInput>;
@@ -2149,10 +2155,8 @@ export type MarkdownRemarkFrontmatterFilterInput = {
   schedule?: Maybe<MarkdownRemarkFrontmatterScheduleFilterListInput>;
   show_sponsors_list?: Maybe<BooleanQueryOperatorInput>;
   show_sponsor_button?: Maybe<BooleanQueryOperatorInput>;
-  sponsor_document?: Maybe<FileFilterInput>;
   sponsors?: Maybe<MarkdownRemarkFrontmatterSponsorsFilterListInput>;
-  event_info?: Maybe<StringQueryOperatorInput>;
-  show_faq?: Maybe<BooleanQueryOperatorInput>;
+  sponsor_document?: Maybe<FileFilterInput>;
   create_hacking_countdown_timer?: Maybe<BooleanQueryOperatorInput>;
   hacking_start?: Maybe<DateQueryOperatorInput>;
   hacking_end?: Maybe<DateQueryOperatorInput>;
@@ -2204,15 +2208,15 @@ export type MarkdownRemarkFrontmatterScheduleFilterListInput = {
 };
 
 export type MarkdownRemarkFrontmatterSponsors = {
-  colour?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
+  colour?: Maybe<Scalars['String']>;
   tier?: Maybe<Scalars['Int']>;
   tier_sponsors?: Maybe<Array<Maybe<MarkdownRemarkFrontmatterSponsorsTier_Sponsors>>>;
 };
 
 export type MarkdownRemarkFrontmatterSponsorsFilterInput = {
-  colour?: Maybe<StringQueryOperatorInput>;
   name?: Maybe<StringQueryOperatorInput>;
+  colour?: Maybe<StringQueryOperatorInput>;
   tier?: Maybe<IntQueryOperatorInput>;
   tier_sponsors?: Maybe<MarkdownRemarkFrontmatterSponsorsTier_SponsorsFilterListInput>;
 };
@@ -2222,18 +2226,18 @@ export type MarkdownRemarkFrontmatterSponsorsFilterListInput = {
 };
 
 export type MarkdownRemarkFrontmatterSponsorsTier_Sponsors = {
-  colour?: Maybe<Scalars['String']>;
-  image?: Maybe<File>;
-  link?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
+  link?: Maybe<Scalars['String']>;
+  image?: Maybe<File>;
+  colour?: Maybe<Scalars['String']>;
   shadow_colour?: Maybe<Scalars['String']>;
 };
 
 export type MarkdownRemarkFrontmatterSponsorsTier_SponsorsFilterInput = {
-  colour?: Maybe<StringQueryOperatorInput>;
-  image?: Maybe<FileFilterInput>;
-  link?: Maybe<StringQueryOperatorInput>;
   name?: Maybe<StringQueryOperatorInput>;
+  link?: Maybe<StringQueryOperatorInput>;
+  image?: Maybe<FileFilterInput>;
+  colour?: Maybe<StringQueryOperatorInput>;
   shadow_colour?: Maybe<StringQueryOperatorInput>;
 };
 

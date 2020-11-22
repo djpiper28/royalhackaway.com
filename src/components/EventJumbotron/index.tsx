@@ -3,16 +3,17 @@ import styles from "./index.module.scss"
 import Img from "gatsby-image"
 import { CombineStyles } from "../../helpers/CombineStyles"
 import { ButtonsContainer } from "../ButtonsContainer"
-import { EventPageQuery } from "../../../types/graphql"
+import { EventPageQuery, MarkdownRemark, MarkdownRemarkFrontmatter, Maybe } from "../../../types/graphql"
 
 interface Props {
-  data: EventPageQuery
+  markdownRemark: {
+    frontmatter: MarkdownRemarkFrontmatter
+  }
 }
 
 class EventJumbotron extends Component<Props> {
   render(): ReactNode {
-    const { markdownRemark } = this.props.data
-    const { frontmatter } = markdownRemark
+    const { frontmatter } = this.props.markdownRemark
 
     const {
       display_logo,
