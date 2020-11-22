@@ -60,6 +60,7 @@ exports.createPages = ({ actions, graphql, reporter }) => {
             }
             frontmatter {
               is_public
+              render
               create_hacking_countdown_timer
             }
           }
@@ -74,7 +75,7 @@ exports.createPages = ({ actions, graphql, reporter }) => {
 
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
       // If public, create the page based on the folder it is in.
-      if (node.frontmatter.is_public) {
+      if (node.frontmatter.render && node.frontmatter.is_public) {
         const template = node.fields.template
         createPage({
           path: node.fields.slug,

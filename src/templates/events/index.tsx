@@ -42,7 +42,19 @@ const EventsPage = ({ data }: { data: EventPageQuery }): ReactNode => {
       />
 
       <EventJumbotron data={data} />
+
+      {show_sponsors_list && (
+        <EventSponsors
+          sponsors={sponsors}
+          sponsor_document={sponsor_document}
+          show_sponsors_list={show_sponsors_list}
+          show_sponsor_button={show_sponsor_button}
+        />
+      )}
+
       {full_description && <EventDescription data={data} />}
+
+
       {show_map && <GoogleMaps map={map_src} />}
 
       {
@@ -55,14 +67,6 @@ const EventsPage = ({ data }: { data: EventPageQuery }): ReactNode => {
       }
 
       {show_schedule && <EventSchedule schedule={schedule} />}
-      {show_sponsors_list && (
-        <EventSponsors
-          sponsors={sponsors}
-          sponsor_document={sponsor_document}
-          show_sponsors_list={show_sponsors_list}
-          show_sponsor_button={show_sponsor_button}
-        />
-      )}
       {show_faq && <EventFrequentlyAskedQuestions />}
       {show_wifi_details && <EventInternetConnectivity internet={internet} />}
       <EventQualms />
