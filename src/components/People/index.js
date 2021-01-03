@@ -54,64 +54,61 @@ class People extends Component {
             </div>
             <div className="container py-5">
               <div className="row justify-content-center">
-                <div className="col-12 col-md-10 col-xl-8">
-                  <div className="row justify-content-center">
-                    {data.allMarkdownRemark.nodes
-                      .filter(person => person.frontmatter.is_public)
-                      .map(person => (
-                        <div
-                          className={CombineStyles(
-                            "col-6 col-sm-4 col-md-3",
-                            styles.card
-                          )}
-                          key={person.frontmatter.name}
-                        >
-                          <div className={styles.pictureContainer}>
-                            <Img
-                              fluid={{
-                                ...person.frontmatter.jumbotron_image
-                                  .childImageSharp.fluid,
-                                aspectRatio: 1,
-                              }}
-                              className={styles.picture}
-                              title={person.frontmatter.description}
-                            />
-                          </div>
-                          <div className={styles.cardContent}>
-                            <div className="text-center">
-                              <span className={styles.name}>
-                                {person.frontmatter.name}
-                              </span>
-                              <br />
-                              <span
-                                className={CombineStyles(
-                                  styles.description,
-                                  "text-muted"
-                                )}
-                              >
-                                {person.frontmatter.short_description}
-                              </span>
-                              {/* <div
+                {data.allMarkdownRemark.nodes
+                  .filter(person => person.frontmatter.is_public)
+                  .map(person => (
+                    <div
+                      className={CombineStyles("col-5 col-sm-4 col-md-3 col-xl-2", styles.card)}
+                      key={person.frontmatter.name}
+                    >
+                      <div className={styles.pictureContainer}>
+                        {person.frontmatter.jumbotron_image ? (
+                          <Img
+                            fluid={{
+                              ...person.frontmatter.jumbotron_image
+                                .childImageSharp.fluid,
+                              aspectRatio: 1,
+                            }}
+                            className={styles.picture}
+                            title={person.frontmatter.description}
+                          />
+                        ) : (
+                          <div className={styles.nullPicture}></div>
+                        )}
+                      </div>
+                      <div className={styles.cardContent}>
+                        <div className="text-center">
+                          <span className={styles.name}>
+                            {person.frontmatter.name}
+                          </span>
+                          <br />
+                          <span
+                            className={CombineStyles(
+                              styles.description,
+                              "text-muted"
+                            )}
+                          >
+                            {person.frontmatter.short_description}
+                          </span>
+                          {/* <div
                                 className={styles.body}
                                 dangerouslySetInnerHTML={{
                                   __html: person.html,
                                 }}
                               ></div> */}
-                              <div className={styles.handles}>
-                                {person.frontmatter.handles.map(handle => (
-                                  <PersonHandle
-                                    key={handle.handle}
-                                    handle={handle.handle}
-                                    service={handle.service}
-                                  />
-                                ))}
-                              </div>
-                            </div>
+                          <div className={styles.handles}>
+                            {person.frontmatter.handles.map(handle => (
+                              <PersonHandle
+                                key={handle.handle}
+                                handle={handle.handle}
+                                service={handle.service}
+                              />
+                            ))}
                           </div>
                         </div>
-                      ))}
-                  </div>
-                </div>
+                      </div>
+                    </div>
+                  ))}
               </div>
             </div>
           </section>

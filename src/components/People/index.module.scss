@@ -18,7 +18,7 @@
   .cardContent {
     background-color: white;
     color: black;
-    padding: 0.5em 0.25em;
+    padding: 0.5em 0em;
     .name {
       font-weight: bold;
     }
@@ -27,8 +27,24 @@
     }
   }
   .pictureContainer {
-    .picture {
+    .picture, .nullPicture {
       width: 100%;
+    }
+
+    .nullPicture {
+      padding-top: 100%;
+      background-color: grey;
+      position: relative;
+
+      &::after {
+        position: absolute;
+        display: block;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        font-size: 6em;
+        content: "?";
+      }
     }
   }
 }
