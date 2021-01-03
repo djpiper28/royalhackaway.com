@@ -5,5 +5,6 @@
 <url> <loc>https://royalhackaway.com/events/hackawayv3/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://royalhackaway.com/events/hackawayv3/timer/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://royalhackaway.com/events/hackaway2019/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://royalhackaway.com/dataprotection/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://royalhackaway.com/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 </urlset>
